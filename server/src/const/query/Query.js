@@ -8,4 +8,5 @@ exports.updateByIdUser = `update user set name = ?,?,? where userid = ?`;
 
 
 
-//
+//entertainment
+exports.get

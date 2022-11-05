@@ -63,11 +63,11 @@ exports.updateUsername = async (req, res, next) => {
 };
 
 exports.updatePassword = async (req, res, next) => {
-    try {
-      let { userid, password } = req.body;
-      let [user, _] = await User.changePassword(userid, password);
-      res.status(201).json({ message: "User password updated" });
-    } catch (err) {
-      next(err);
-    }
-  };
+  try {
+    let { userid, password } = req.body;
+    let [user, _] = await User.changePassword(userid, password);
+    res.status(201).json({ message: "User password updated" });
+  } catch (err) {
+    next(err);
+  }
+};
