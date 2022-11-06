@@ -18,12 +18,11 @@ class Entertainment {
 
   static getAll() {
     let sql = "select * from uzweruilcilgee";
-    const location = new Address.Location();
-    const city = new Address.City();
-    const state = new Address.State();
-    const committee = new Address.Committee();
-    const address = new Address.Address();
+    return db.execute(sql);
+  }
 
+  static getById(id) {
+    let sql = `select * from uzweruilcilgee where uzwerid = ${id}`;
     return db.execute(sql);
   }
 }

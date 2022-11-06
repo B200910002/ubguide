@@ -12,18 +12,9 @@ class Address {
 
   static async getAll() {
     let sql = "select * from hayg";
-    let [hayg] = await db.execute(sql);
-
-    for (let i = 0; i < hayg.length; i++) {
-      const [location] = await Location.getById(hayg[i].bairshilid);
-      const [horoo] = await Committee.getById(hayg[i].horoolavlah_horoocode);
-      hayg[i].bairshilid = location[0];
-      hayg[i].horoolavlah_horoocode = horoo[0];
-    }
-
-    return [hayg];
+    return db.execute(sql)
   }
-  static async getById(id) {
+  static getById(id) {
     let sql = `select * from hayg where haygid = ${id};`;
     return db.execute(sql);
   }
@@ -55,14 +46,9 @@ class Committee {
     let sql = `select * from HorooLavlah`;
     return db.execute(sql);
   }
-  static async getById(id) {
+  static getById(id) {
     let sql = `select * from HorooLavlah where HorooCode = ${id}`;
-    let [committee] = await db.execute(sql);
-    let [state] = await State.getById(
-      committee[0].DuuregSumiinLavlah_DuuregSumiinCode
-    );
-    committee[0].DuuregSumiinLavlah_DuuregSumiinCode = state[0];
-    return [committee];
+    return db.execute(sql);
   }
 }
 
@@ -76,13 +62,9 @@ class State {
     let sql = "select * from DuuregSumiinLavlah";
     return db.execute(sql);
   }
-  static async getById(id) {
+  static getById(id) {
     let sql = `select * from DuuregSumiinLavlah where DuuregSumiinCode = '${id}'`;
-    let [state] = await db.execute(sql);
-    let [city] = await City.getById(state[0].HotAimgiinLavlah_HotAimgiinCode);
-    state[0].HotAimgiinLavlah_HotAimgiinCode = city[0];
-    console.log(city);
-    return [state];
+    return db.execute(sql);
   }
 }
 
