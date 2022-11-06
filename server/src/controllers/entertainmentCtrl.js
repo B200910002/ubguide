@@ -35,12 +35,16 @@ exports.getById = async (req, res, next) => {
     const [committee] = await Address.Committee.getById(address[0].horoolavlah_horoocode);
     const [state] = await Address.State.getById(committee[0].DuuregSumiinLavlah_DuuregSumiinCode);
     const [city] = await Address.City.getById(state[0].HotAimgiinLavlah_HotAimgiinCode);
+    const [phone] = await Phone.getByEntertainmentId(entertainment[0].uzwerid);
 
     state[0].HotAimgiinLavlah_HotAimgiinCode = city[0];
     committee[0].DuuregSumiinLavlah_DuuregSumiinCode = state[0];
     address[0].horoolavlah_horoocode = committee[0];
     address[0].bairshilid = location[0];
     entertainment[0].haygid = address[0];
+
+    // console.log(phone)
+    entertainment[0].phone = phone
 
     res.status(200).json(entertainment[0]);
   } catch (err) {
