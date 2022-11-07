@@ -8,7 +8,6 @@ class Phone {
     this.utas;
     this.entertainmentid;
   }
-
   static getAll() {
     let sql = "select * from utaslavlah";
     return db.execute(sql);
