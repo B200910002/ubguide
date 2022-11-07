@@ -80,42 +80,51 @@ exports.createNewEntertainment = async (req, res, next) => {
       mail,
       ognoo,
       haygid,
+      numbers,
+      pictures,
     } = req.body;
 
     let city = new Address.City(
       haygid.horoolavlah_horoocode.DuuregSumiinLavlah_DuuregSumiinCode.HotAimgiinLavlah_HotAimgiinCode.HotAimgiinCode,
       haygid.horoolavlah_horoocode.DuuregSumiinLavlah_DuuregSumiinCode.HotAimgiinLavlah_HotAimgiinCode.HotAimgiinNer
     );
-    city = await city.save();
+    let cityCode = await city.save();
 
     let state = new Address.State(
       haygid.horoolavlah_horoocode.DuuregSumiinLavlah_DuuregSumiinCode.DuuregSumiinCode,
       haygid.horoolavlah_horoocode.DuuregSumiinLavlah_DuuregSumiinCode.DuuregSumiinNer,
-      city[0][0][0].code
+      cityCode[0][0][0].code
+      // city
     );
-    state = await state.save();
+    let stateCode = await state.save();
 
     let committee = new Address.Committee(
       haygid.horoolavlah_horoocode.HorooCode,
       haygid.horoolavlah_horoocode.HorooNer,
-      state[0][0][0].code
+      stateCode[0][0][0].code
+      // state
     );
-    committee = await committee.save();
+    let committeeCode = await committee.save();
+    committee.id = committeeCode[0][0][0].horoocode;
 
     let location = new Address.Location(
       haygid.bairshilid.bairshilid,
       haygid.bairshilid.x,
       haygid.bairshilid.y
     );
-    location = await location.save();
+    let locationCode = await location.save();
+    location.id = locationCode[0][0][0].bairshilid;
 
     let address = new Address.Address(
       haygid.haygid,
       haygid.haygdelgerengui,
-      location[0][0][0].bairshilid,
-      committee[0][0][0].horoocode
+      locationCode[0][0][0].bairshilid,
+      committeeCode[0][0][0].horoocode
+      // location,
+      // committee
     );
-    address = await address.save();
+    let addressCode = await address.save();
+    address.id = addressCode[0][0][0].haygid;
 
     let entertainment = new Entertainment(
       uzwerid,
@@ -126,14 +135,27 @@ exports.createNewEntertainment = async (req, res, next) => {
       facebook,
       mail,
       ognoo,
-      address[0][0][0].haygid
+      addressCode[0][0][0].haygid
+      // address
     );
 
-    entertainment = await entertainment.save();
-    entertainment.id = entertainment[0][0][0].uzwerid;
-    console.log(entertainment);
+    let entertainmentCode = await entertainment.save();
+    entertainment.id = entertainmentCode[0][0][0].uzwerid;
 
-    res.status(201).json({ message: "city created" });
+    let utas;
+
+    for (let i = 0; i < numbers.length; i++) {
+      utas = new Phone(entertainment.id, numbers[i].utas);
+      await utas.save();
+    }
+
+    let pic;
+    for (let i = 0; i < pictures.length; i++) {
+      pic = new Picture(entertainment.id, pictures[i].zuragner);
+      await pic.save()
+    }
+
+    res.status(201).json({ message: "entertainment created!" });
   } catch (error) {
     next(error);
   }
