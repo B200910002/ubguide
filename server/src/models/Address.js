@@ -18,16 +18,16 @@ class Address {
     return db.execute(sql);
   }
   save() {
-    let sql = `call insertHayg('${this.description}',${this.location.id},${this.committee.id})`;
+    let sql = `call insertHayg('${this.description}',${this.location},${this.committee})`;
     return db.execute(sql);
   }
 }
 
 class Location {
-  constructor() {
-    this.id;
-    this.coordinateX;
-    this.coordinateY;
+  constructor(id, coordinateX, coordinateY) {
+    this.id = id;
+    this.coordinateX = coordinateX;
+    this.coordinateY = coordinateY;
   }
   static getAll() {
     let sql = "select * from bairshil";
@@ -35,6 +35,10 @@ class Location {
   }
   static getById(id) {
     let sql = `select * from bairshil where bairshilid = ${id}`;
+    return db.execute(sql);
+  }
+  save() {
+    let sql = `call insertbairshil(${this.coordinateX}, ${this.coordinateY});`;
     return db.execute(sql);
   }
 }
@@ -54,8 +58,7 @@ class Committee {
     return db.execute(sql);
   }
   save() {
-    let sql = `call insertHorooLavlah(${this.id}, '${this.committeeName}', '${this.state.id}');`;
-    console.log(this.state);
+    let sql = `call insertHorooLavlah('${this.committeeName}', '${this.state}');`;
     return db.execute(sql);
   }
 }
@@ -75,7 +78,7 @@ class State {
     return db.execute(sql);
   }
   save() {
-    let sql = `call insertDuuregSumiinLavlah( '${this.id}', '${this.stateName}','${this.city.id}');`;
+    let sql = `call insertDuuregSumiinLavlah( '${this.id}', '${this.stateName}','${this.city}');`;
     return db.execute(sql);
   }
 }

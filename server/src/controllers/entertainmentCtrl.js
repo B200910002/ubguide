@@ -70,22 +70,68 @@ exports.getById = async (req, res, next) => {
 
 exports.createNewEntertainment = async (req, res, next) => {
   try {
-    let { HorooCode, HorooNer, DuuregSumiinLavlah_DuuregSumiinCode } = req.body;
+    let {
+      uzwerid,
+      ner,
+      delgerengui,
+      prozurag,
+      zipcode,
+      facebook,
+      mail,
+      ognoo,
+      haygid,
+    } = req.body;
 
     let city = new Address.City(
-      DuuregSumiinLavlah_DuuregSumiinCode.HotAimgiinLavlah_HotAimgiinCode.HotAimgiinCode,
-      DuuregSumiinLavlah_DuuregSumiinCode.HotAimgiinLavlah_HotAimgiinCode.HotAimgiinNer
+      haygid.horoolavlah_horoocode.DuuregSumiinLavlah_DuuregSumiinCode.HotAimgiinLavlah_HotAimgiinCode.HotAimgiinCode,
+      haygid.horoolavlah_horoocode.DuuregSumiinLavlah_DuuregSumiinCode.HotAimgiinLavlah_HotAimgiinCode.HotAimgiinNer
     );
-    let state = new Address.State(
-      DuuregSumiinLavlah_DuuregSumiinCode.DuuregSumiinCode,
-      DuuregSumiinLavlah_DuuregSumiinCode.DuuregSumiinNer,
-      city
-    );
-    let committee = new Address.Committee(HorooCode, HorooNer, state);
-
     city = await city.save();
+
+    let state = new Address.State(
+      haygid.horoolavlah_horoocode.DuuregSumiinLavlah_DuuregSumiinCode.DuuregSumiinCode,
+      haygid.horoolavlah_horoocode.DuuregSumiinLavlah_DuuregSumiinCode.DuuregSumiinNer,
+      city[0][0][0].code
+    );
     state = await state.save();
+
+    let committee = new Address.Committee(
+      haygid.horoolavlah_horoocode.HorooCode,
+      haygid.horoolavlah_horoocode.HorooNer,
+      state[0][0][0].code
+    );
     committee = await committee.save();
+
+    let location = new Address.Location(
+      haygid.bairshilid.bairshilid,
+      haygid.bairshilid.x,
+      haygid.bairshilid.y
+    );
+    location = await location.save();
+
+    let address = new Address.Address(
+      haygid.haygid,
+      haygid.haygdelgerengui,
+      location[0][0][0].bairshilid,
+      committee[0][0][0].horoocode
+    );
+    address = await address.save();
+
+    let entertainment = new Entertainment(
+      uzwerid,
+      ner,
+      delgerengui,
+      prozurag,
+      zipcode,
+      facebook,
+      mail,
+      ognoo,
+      address[0][0][0].haygid
+    );
+
+    entertainment = await entertainment.save();
+    entertainment.id = entertainment[0][0][0].uzwerid;
+    console.log(entertainment);
 
     res.status(201).json({ message: "city created" });
   } catch (error) {
