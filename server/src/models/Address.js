@@ -3,19 +3,22 @@ const query = require("../const/query/Query");
 const procedure = require("../const/query/Procedure");
 
 class Address {
-  constructor() {
-    this.id;
-    this.description;
-    this.location;
-    this.committee;
+  constructor(id, description, location, committee) {
+    this.id = id;
+    this.description = description;
+    this.location = location;
+    this.committee = committee;
   }
-
   static async getAll() {
     let sql = "select * from hayg";
-    return db.execute(sql)
+    return db.execute(sql);
   }
   static getById(id) {
     let sql = `select * from hayg where haygid = ${id};`;
+    return db.execute(sql);
+  }
+  save() {
+    let sql = `call insertHayg('${this.description}',${this.location.id},${this.committee.id})`;
     return db.execute(sql);
   }
 }
@@ -37,10 +40,10 @@ class Location {
 }
 
 class Committee {
-  constructor() {
-    this.id;
-    this.cityName;
-    this.state;
+  constructor(id, committeeName, state) {
+    this.id = id;
+    this.committeeName = committeeName;
+    this.state = state;
   }
   static getAll() {
     let sql = `select * from HorooLavlah`;
@@ -50,13 +53,18 @@ class Committee {
     let sql = `select * from HorooLavlah where HorooCode = ${id}`;
     return db.execute(sql);
   }
+  save() {
+    let sql = `call insertHorooLavlah(${this.id}, '${this.committeeName}', '${this.state.id}');`;
+    console.log(this.state);
+    return db.execute(sql);
+  }
 }
 
 class State {
-  constructor() {
-    this.id;
-    this.stateName;
-    this.city;
+  constructor(id, stateName, city) {
+    this.id = id;
+    this.stateName = stateName;
+    this.city = city;
   }
   static getAll() {
     let sql = "select * from DuuregSumiinLavlah";
@@ -66,12 +74,16 @@ class State {
     let sql = `select * from DuuregSumiinLavlah where DuuregSumiinCode = '${id}'`;
     return db.execute(sql);
   }
+  save() {
+    let sql = `call insertDuuregSumiinLavlah( '${this.id}', '${this.stateName}','${this.city.id}');`;
+    return db.execute(sql);
+  }
 }
 
 class City {
-  constructor() {
-    this.id;
-    this.cityName;
+  constructor(id, cityName) {
+    this.id = id;
+    this.cityName = cityName;
   }
   static getAll() {
     let sql = "select * from HotAimgiinLavlah";
@@ -79,6 +91,10 @@ class City {
   }
   static getById(id) {
     let sql = `select * from HotAimgiinLavlah where HotAimgiinCode = '${id}'`;
+    return db.execute(sql);
+  }
+  save() {
+    let sql = `call insertHotAimgiinLavlah('${this.id}', '${this.cityName}');`;
     return db.execute(sql);
   }
 }

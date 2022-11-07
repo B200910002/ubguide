@@ -25,6 +25,10 @@ class Entertainment {
     let sql = `select * from uzweruilcilgee where uzwerid = ${id}`;
     return db.execute(sql);
   }
+  save() {
+    sql = ``;
+    return db.execute(sql);
+  }
 }
 
 module.exports = Entertainment;
