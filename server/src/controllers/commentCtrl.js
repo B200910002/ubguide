@@ -1,4 +1,5 @@
 const Comment = require("../models/Comment");
+const User = require("../models/User");
 
 exports.getAll = async (req, res, next) => {};
 
