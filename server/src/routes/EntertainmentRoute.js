@@ -19,6 +19,6 @@ router.put("/put_comment", commentCtrl.updateComment);
 
 //delete
 
-router.delete('/delete_comment', commentCtrl.deleteComment)
+router.delete('/delete_comment/:id', commentCtrl.deleteComment)
 
 module.exports = router;

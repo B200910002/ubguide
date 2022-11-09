@@ -35,6 +35,8 @@ exports.updateComment = async (req, res, next) => {
 
 exports.deleteComment = async (req, res, next) => {
   try {
+    let commentId = req.params.id;
+    let comment = await Comment.remove(commentId);
     res.status(201).json({ message: "comment deleted!" });
   } catch (err) {
     next(err);
