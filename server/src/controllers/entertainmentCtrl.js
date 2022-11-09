@@ -2,6 +2,7 @@ const Address = require("../models/Address");
 const Entertainment = require("../models/Entertainment");
 const Phone = require("../models/Phone");
 const Picture = require("../models/Picture");
+const Comment = require("../models/Comment");
 
 exports.getAll = async (req, res, next) => {
   try {
@@ -62,6 +63,10 @@ exports.getById = async (req, res, next) => {
     entertainment[0].numbers = numbers;
     entertainment[0].pictures = pictures;
 
+    const [comments] = await Comment.getByEntertainmentId(
+      entertainment[0].uzwerid
+    );
+    entertainment[0].commentcout = comments.length;
     res.status(200).json(entertainment[0]);
   } catch (err) {
     next(err);
@@ -152,7 +157,7 @@ exports.createNewEntertainment = async (req, res, next) => {
     let pic;
     for (let i = 0; i < pictures.length; i++) {
       pic = new Picture(entertainment.id, pictures[i].zuragner);
-      await pic.save()
+      await pic.save();
     }
 
     res.status(201).json({ message: "entertainment created!" });
