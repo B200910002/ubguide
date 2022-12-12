@@ -9,6 +9,7 @@ import {
   AsyncStorage,
   Keyboard,
 } from 'react-native';
+import {NavigationBarTitle} from 'react-native-navbar';
 
 export default class App extends Component {
   state = {
@@ -20,17 +21,22 @@ export default class App extends Component {
   render() {
     const {search} = this.state;
     return (
-      <SearchBar
-        placeholder="Type Here..."
-        onChangeText={this.updateSearch}
-        value={search}
-        style={styles}
-      />
+      <View>
+        <SearchBar
+          placeholder="Type Here..."
+          onChangeText={this.updateSearch}
+          value={search}
+          style={styles}
+        />
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   search: {
     backgroundColor: '#000000',
+  },
+  container: {
+    flex: 1,
   },
 });
