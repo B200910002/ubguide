@@ -23,7 +23,11 @@ export default class App extends Component {
   render() {
     return (
       <Tab.Navigator>
-        <Tab.Screen name="Place" component={Place} options={{title: 'Хөшөө дурсгал'}} />
+        <Tab.Screen
+          name="Place"
+          component={Place}
+          options={{title: 'Хөшөө дурсгал'}}
+        />
         <Tab.Screen
           name="Search"
           component={Search}

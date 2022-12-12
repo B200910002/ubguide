@@ -13,14 +13,11 @@ export default class Place extends Component {
     const {search} = this.state;
     return (
       <View>
-        <Text>Search</Text>
         <SearchBar
           placeholder="Хайх"
           inputStyle={{backgroundColor: 'white'}}
           containerStyle={{
             backgroundColor: '#DB4646',
-            borderWidth: 1,
-            borderRadius: 5,
           }}
           inputContainerStyle={{backgroundColor: 'white'}}
           placeholderTextColor={'#g5g5g5'}

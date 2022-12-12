@@ -5,13 +5,13 @@ import Axios from 'axios';
 export default class Place extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {user: {}};
   }
   getById(id) {
     Axios.get(`http://192.168.0.107:5000/api/v1/user/get/${id}`).then(
       response => {
-        this.setState({place: response.data});
-        console.log(this.state.place);
+        this.setState({user: response.data});
+        console.log(this.state.user);
       },
     );
   }
