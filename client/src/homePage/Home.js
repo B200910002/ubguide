@@ -16,13 +16,31 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Place from './Place';
 import Search from './Search';
+import News from './News';
 import Profile from './Profile';
 
 export default class App extends Component {
   render() {
-    return <MyTabs />;
+    return (
+      <Tab.Navigator>
+        <Tab.Screen name="Place" component={Place} options={{title: 'Хөтөч'}} />
+        <Tab.Screen
+          name="Search"
+          component={Search}
+          options={{title: 'Хайх'}}
+        />
+        <Tab.Screen name="News" component={News} options={{title: 'Мэдээ'}} />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{title: 'Профайл'}}
+        />
+      </Tab.Navigator>
+    );
   }
 }
+
+const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
   search: {
@@ -30,19 +48,3 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 });
-
-const Tab = createBottomTabNavigator();
-
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Place" component={Place} options={{title: 'Хөтөч'}} />
-      <Tab.Screen name="Search" component={Search} options={{title: 'Хайх'}} />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{title: 'Профайл'}}
-      />
-    </Tab.Navigator>
-  );
-}

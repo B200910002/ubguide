@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {Axios} from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 export default class Login extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class Login extends Component {
       password: '',
     };
   }
+  navigation = useNavigation;
   saveData = async () => {
     const {email, password} = this.state;
     let loginDetails = {email: email, password: password};
@@ -56,51 +58,55 @@ export default class Login extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.inputBox}
-          onChangeText={email => this.setState({email})}
-          underlineColorAndroid="rgba(0,0,0,0)"
-          placeholder="Нэвтрэх нэр"
-          placeholderTextColor="#850c22"
-          selectionColor="#fff"
-          keyboardType="email-address"
-          onSubmitEditing={() => this.password.focus()}
-        />
-        <TextInput
-          style={styles.inputBox}
-          onChangeText={password => this.setState({password})}
-          underlineColorAndroid="rgba(0,0,0,0)"
-          placeholder="Нууц үг"
-          secureTextEntry={true}
-          placeholderTextColor="#850c22"
-          ref={input => (this.password = input)}
-        />
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={this.props.pressLogin}>
-            Нэвтрэх
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button2}>
-          <Text style={styles.buttonText} onPress={this.props.pressLogin}>
-            FACEBOOK-ээр нэвтрэх
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button3}>
-          <Text style={styles.buttonText2} onPress={this.props.pressLogin}>
-            GOOGLE-ээр нэвтрэх
-          </Text>
-        </TouchableOpacity>
-        <Text>Бүртгэлтэй хаяг байхгүй.</Text>
-        <Text
-          style={styles.buttonTextRegist}
-          onPress={this.props.pressRegister}>
-          Бүртгүүлэх
-        </Text>
+      <View>
+        <View style={styles.container}>
+          <TextInput
+            style={styles.inputBox}
+            onChangeText={email => this.setState({email})}
+            underlineColorAndroid="rgba(0,0,0,0)"
+            placeholder="Нэвтрэх нэр"
+            placeholderTextColor="#850c22"
+            selectionColor="#fff"
+            keyboardType="email-address"
+            onSubmitEditing={() => this.password.focus()}
+          />
+          <TextInput
+            style={styles.inputBox}
+            onChangeText={password => this.setState({password})}
+            underlineColorAndroid="rgba(0,0,0,0)"
+            placeholder="Нууц үг"
+            secureTextEntry={true}
+            placeholderTextColor="#850c22"
+            ref={input => (this.password = input)}
+          />
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText} onPress={this.props.pressLogin}>
+              Нэвтрэх
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button2}>
+            <Text style={styles.buttonText} onPress={this.props.pressLogin}>
+              FACEBOOK-ээр нэвтрэх
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button3}>
+            <Text style={styles.buttonText2} onPress={this.props.pressLogin}>
+              GOOGLE-ээр нэвтрэх
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Бүртгэлтэй хаяг байхгүй? </Text>
+          <TouchableOpacity
+            onPress={this.props.pressRegister}>
+            <Text style={styles.buttonTextRegist}>Бүртгүүлэх</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
@@ -154,5 +160,13 @@ const styles = StyleSheet.create({
     color: '#DB4646',
     textAlign: 'center',
     justifyContent: 'flex-end',
+  },
+  footer: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    flexDirection: 'row',
+  },
+  footerText: {
+    fontWeight: 'bold',
   },
 });

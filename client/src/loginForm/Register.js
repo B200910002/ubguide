@@ -98,10 +98,13 @@ export default class Register extends Component {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Бүртгүүлэх</Text>
         </TouchableOpacity>
-        <Text>Аль хэдийн бүртгүүлсэн?</Text>
-        <Text style={styles.buttonText2} onPress={this.props.pressLogin}>
-          Нэвтрэх
-        </Text>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Аль хэдийн бүртгүүлсэн? </Text>
+          <TouchableOpacity
+            onPress={this.props.pressLogin}>
+            <Text style={styles.buttonText2}>Нэвтрэх</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -138,5 +141,13 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#DB4646',
     textAlign: 'center',
+  },
+  footer: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    flexDirection: 'row',
+  },
+  footerText: {
+    fontWeight: 'bold',
   },
 });
