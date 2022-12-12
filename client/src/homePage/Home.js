@@ -9,10 +9,9 @@ import {
   AsyncStorage,
   Keyboard,
 } from 'react-native';
-import {NavigationBarTitle} from 'react-native-navbar';
-import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {SvgXml} from 'react-native-svg';
+import Pictures from '../constant/Pictures';
 
 import Place from './Place';
 import Search from './Search';
@@ -26,7 +25,9 @@ export default class App extends Component {
         <Tab.Screen
           name="Place"
           component={Place}
-          options={{title: 'Хөшөө дурсгал'}}
+          options={{
+            title: 'Хөшөө дурсгал',
+          }}
         />
         <Tab.Screen
           name="Search"

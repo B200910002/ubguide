@@ -26,7 +26,7 @@ export default class Place extends Component {
           value={search}
           onChangeText={text => this.searchFunction(text)}
           autoCorrect={false}
-          searchIcon={{name: '', size: 24}}
+          searchIcon={{size: 24}}
         />
       </View>
     );

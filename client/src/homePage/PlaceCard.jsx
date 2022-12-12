@@ -1,7 +1,6 @@
 import {Component} from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import {Card} from '@rneui/base';
-import {CardImage} from '@rneui/base/dist/Card/Card.Image';
 
 export default class PlaceCard extends Component {
   constructor(props) {

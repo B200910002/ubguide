@@ -2,6 +2,8 @@ import {Component} from 'react';
 import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
 import Axios from 'axios';
 import PlaceCard from './PlaceCard';
+import {SvgXml} from 'react-native-svg';
+import Pictures from '../constant/Pictures';
 
 export default class Place extends Component {
   constructor(props) {
@@ -25,7 +27,6 @@ export default class Place extends Component {
           places: response.data.entertainments,
           count: response.data.count,
         });
-        // console.log(this.state.places[0]);
       },
     );
   }
