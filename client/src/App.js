@@ -41,27 +41,17 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
-          options={{
-            title: 'Нэвтрэх',
-            statusBarColor: '#DB4646',
-          }}
-          backgroundColor={styles.redContainer}
+          options={navigationOptions('Нэвтрэх')}
         />
         <Stack.Screen
           name="Register"
           component={RegisterScreen}
-          options={{
-            title: 'Бүртгүүлэх',
-            statusBarColor: '#DB4646',
-          }}
+          options={navigationOptions('Бүртгүүлэх')}
         />
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{
-            title: 'Улаанбаатар хотын төтөч',
-            statusBarColor: '#DB4646',
-          }}
+          options={navigationOptions('Улаанбаатар хотын төтөч')}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -72,4 +62,13 @@ const styles = StyleSheet.create({
   redContainer: {
     backgroundColor: '#DB4646',
   },
+});
+
+const navigationOptions = title => ({
+  title: title,
+  headerTintColor: '#ffffff',
+  headerStyle: {
+    backgroundColor: '#DB4646',
+  },
+  statusBarColor: '#DB4646',
 });

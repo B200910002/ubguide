@@ -23,10 +23,10 @@ export default class App extends Component {
     return (
       <View>
         <SearchBar
-          placeholder="Type Here..."
+          placeholder="Хайх"
           onChangeText={this.updateSearch}
           value={search}
-          style={styles}
+          style={styles.search}
         />
       </View>
     );
@@ -34,9 +34,7 @@ export default class App extends Component {
 }
 const styles = StyleSheet.create({
   search: {
-    backgroundColor: '#000000',
-  },
-  container: {
-    flex: 1,
+    backgroundColor: '#ffffff',
+    justifyContent: 'flex-start',
   },
 });
