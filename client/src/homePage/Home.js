@@ -13,15 +13,17 @@ import {
   Keyboard,
 } from 'react-native';
 import {NavigationBarTitle} from 'react-native-navbar';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import Place from './Place';
+import Search from './Search';
+import Profile from './Profile';
 
 export default class App extends Component {
-  state = {
-    search: '',
-  };
-  updateSearch = search => {
-    this.setState({search});
-  };
   render() {
+    HEAD
     const {search} = this.state;
     return (
       <View>
@@ -40,6 +42,10 @@ export default class App extends Component {
         />
       </View>
     );
+
+    return <MyTabs />; b157b864d39f4e31dc5d93bda14eb236a24ea113
+
+    
   }
 }
 
@@ -49,3 +55,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 });
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Place" component={Place} options={{title: 'Хөтөч'}} />
+      <Tab.Screen name="Search" component={Search} options={{title: 'Хайх'}} />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{title: 'Профайл'}}
+      />
+    </Tab.Navigator>
+  );
+}
