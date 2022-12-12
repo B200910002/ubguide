@@ -19,13 +19,14 @@ export default class Place extends Component {
   }
 
   async refresh() {
-    await Axios.get('http://localhost:5000/api/v1/entertainment/get').then((response) =>
-      this.setState(
-        {
+    console.log(process.env.REACT_APP_API)
+    await Axios.get(process.env.REACT_APP_API+'api/v1/entertainment/get').then(
+      response => {
+        this.setState({
           places: response.data.entertainments,
           count: response.data.count,
-        },
-      ),
+        });
+      },
     );
   }
 
