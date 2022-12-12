@@ -1,18 +1,18 @@
 import {Component} from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import {Card} from '@rneui/base';
+import {CardImage} from '@rneui/base/dist/Card/Card.Image';
 
 export default class PlaceCard extends Component {
   constructor(props) {
     super(props);
   }
+  
   render() {
     return (
       <View style={styles.card}>
         <Card>
-          <Card.Image style={styles.img}>
-            <Image source={this.props.picture}/>
-          </Card.Image>
+          <Card.Image style={styles.img} source={{uri: this.props.picture}} />
           <Card.Title>{this.props.title}</Card.Title>
         </Card>
       </View>
@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   img: {
-    flex: 1,
+    width: '100%',
   },
 });

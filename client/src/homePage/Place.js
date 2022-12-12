@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import Axios from 'axios';
 import PlaceCard from './PlaceCard';
 
@@ -25,7 +25,7 @@ export default class Place extends Component {
           places: response.data.entertainments,
           count: response.data.count,
         });
-        // console.log(this.state.places[0].ner);
+        // console.log(this.state.places[0].prozurag)
       },
     );
   }
@@ -34,11 +34,28 @@ export default class Place extends Component {
     const {places} = this.state;
     return (
       <View>
-        <Text>Total:{this.state.count}</Text>
+        <Text style={styles.totalStyle}>
+          Нийт:{this.state.count}
+          {` >>`}
+        </Text>
         <ScrollView>
-          {places.map((place) => (<PlaceCard key={place.uzwerid} title={place.ner} picture={place.prozurag} />))}
+          {places.map(place => (
+            <PlaceCard
+              key={place.uzwerid}
+              title={place.ner}
+              picture={place.prozurag}
+            />
+          ))}
         </ScrollView>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  totalStyle: {
+    justifyContent: 'flex-end',
+    flexDirection:'column',
+    tintColor: '#DB4646',
+  },
+});
