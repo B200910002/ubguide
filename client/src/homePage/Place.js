@@ -2,17 +2,40 @@ import {Component} from 'react';
 import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
 import {PricingCard} from '@rneui/base';
 import {Card} from '@rneui/base';
-import {Axios} from 'axios';
+import Axios from 'axios';
 
 export default class Place extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {places: [], count: 0};
+  }
+
+  componentDidMount() {
+    this.refresh();
+  }
+
+  componentDidUpdate() {
+    this.refresh();
+  }
+
+  async refresh() {
+    await Axios.get('http://localhost:5000/api/v1/entertainment/get').then((response) =>
+      this.setState(
+        {
+          places: response.data.entertainments,
+          count: response.data.count,
+        },
+      ),
+    );
+  }
+
   render() {
     return (
       <View>
-        <Text>Хөшөө дурсгал</Text>
+        <Text>Total:{this.state.count}</Text>
         <ScrollView>
-          {/* <Lab9_1 /> */}
-          {/* <Lab9_1 /> */}
+          <PlaceCard />
+          <PlaceCard />
           <PlaceCard />
         </ScrollView>
       </View>
@@ -36,15 +59,14 @@ const imgsrc = 'http://localhost:5000/public/img/Чингис-Хаан-музе�
 
 const PlaceCard = () => {
   return (
-    <View>
-      <Text>title</Text>
+    <View style={styles.card}>
       <Card>
         <Card.Divider>
-          <Card.Image>
+          <Card.Image style={styles.img}>
             <Image source={imgsrc} />
           </Card.Image>
         </Card.Divider>
-        <Card.Title style={styles.card}>title</Card.Title>
+        <Card.Title>title</Card.Title>
       </Card>
     </View>
   );
@@ -53,5 +75,11 @@ const PlaceCard = () => {
 const styles = StyleSheet.create({
   card: {
     justifyContent: 'flex-start',
+    alignContent: 'flex-start',
+    // alignItems: 'flex-start',
+    borderRadius: 15,
+  },
+  img: {
+    flex: 1,
   },
 });
