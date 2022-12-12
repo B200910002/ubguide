@@ -19,7 +19,7 @@ export default class Place extends Component {
   }
 
   async refresh() {
-    console.log(process.env.REACT_APP_API);
+    // console.log(process.env.REACT_APP_API);
     await Axios.get('http://10.200.96.176:5000/api/v1/entertainment/get').then(
       response => {
         this.setState({
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
     // alignItems: 'flex-start',
     borderRadius: 15,
+    borderBottomColor: 'white',
   },
   img: {
     flex: 1,
