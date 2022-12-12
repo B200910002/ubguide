@@ -9,7 +9,7 @@ import {
   Keyboard,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import {Axios} from 'axios';
+import Axios from 'axios';
 
 export default class Register extends Component {
   constructor(props) {

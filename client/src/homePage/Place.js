@@ -45,18 +45,6 @@ export default class Place extends Component {
   }
 }
 
-const Lab9_1 = () => {
-  return (
-    <PricingCard
-      color="#4f9deb"
-      title="Free"
-      price="$0"
-      info={['1 User', 'Basic Support', 'All Core Features']}
-      button={{title: 'GET STARTED', icon: 'flight-takeoff'}}
-    />
-  );
-};
-
 const imgsrc = 'http://localhost:5000/public/img/Чингис-Хаан-музей-300x225.jpg';
 
 const PlaceCard = () => {
@@ -80,7 +68,6 @@ const styles = StyleSheet.create({
     alignContent: 'flex-start',
     // alignItems: 'flex-start',
     borderRadius: 15,
-    borderBottomColor: 'white',
   },
   img: {
     flex: 1,

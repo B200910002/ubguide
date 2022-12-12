@@ -9,7 +9,7 @@ import {
   Keyboard,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import {Axios} from 'axios';
+import Axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
 export default class Login extends Component {
