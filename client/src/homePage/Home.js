@@ -1,5 +1,8 @@
 import {Component} from 'react';
 import {SearchBar} from '@rneui/base';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from "react-native-vector-icons/Ionicons";
+
 import {
   StyleSheet,
   Text,
@@ -24,14 +27,22 @@ export default class App extends Component {
       <View>
         <SearchBar
           placeholder="Хайх"
-          onChangeText={this.updateSearch}
+          inputStyle={{backgroundColor: 'white'}}
+          containerStyle={{backgroundColor: '#DB4646', borderWidth: 1, borderRadius: 5}}
+          inputContainerStyle={{backgroundColor: 'white'}}
+          placeholderTextColor={'#g5g5g5'}
+          lightTheme
+          round
           value={search}
-          style={styles.search}
+          onChangeText={(text) => this.searchFunction(text)}
+          autoCorrect={false}
+          searchIcon={{ name : "", size: 24 }}
         />
       </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
   search: {
     backgroundColor: '#ffffff',
