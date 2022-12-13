@@ -2,8 +2,6 @@ import {Component} from 'react';
 import {View, Text, ScrollView, Image, StyleSheet} from 'react-native';
 import Axios from 'axios';
 import PlaceCard from './PlaceCard';
-import {SvgXml} from 'react-native-svg';
-import Pictures from '../constant/Pictures';
 
 export default class Place extends Component {
   constructor(props) {
@@ -21,7 +19,7 @@ export default class Place extends Component {
 
   async refresh() {
     // console.log(process.env.REACT_APP_API);
-    await Axios.get('http://192.168.0.107:5000/api/v1/entertainment/get').then(
+    await Axios.get('http://10.200.96.40:5000/api/v1/entertainment/get').then(
       response => {
         this.setState({
           places: response.data.entertainments,

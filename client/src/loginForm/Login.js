@@ -10,7 +10,9 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import Axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {SvgXml} from 'react-native-svg';
+import Pictures from '../constant/Pictures';
 
 export default class Login extends Component {
   constructor(props) {
@@ -85,20 +87,23 @@ export default class Login extends Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button2}>
+            <SvgXml xml={Pictures.facebookPic} />
             <Text style={styles.buttonText} onPress={this.props.pressLogin}>
+              {'  '}
               FACEBOOK-ээр нэвтрэх
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button3}>
+            <SvgXml xml={Pictures.googlePic} />
             <Text style={styles.buttonText2} onPress={this.props.pressLogin}>
+              {'  '}
               GOOGLE-ээр нэвтрэх
             </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.footer}>
           <Text style={styles.footerText}>Бүртгэлтэй хаяг байхгүй? </Text>
-          <TouchableOpacity
-            onPress={this.props.pressRegister}>
+          <TouchableOpacity onPress={this.props.pressRegister}>
             <Text style={styles.buttonTextRegist}>Бүртгүүлэх</Text>
           </TouchableOpacity>
         </View>
@@ -134,6 +139,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 9,
     paddingVertical: 11,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   button3: {
     width: 299,
@@ -141,6 +148,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 9,
     paddingVertical: 11,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   buttonText: {
     fontSize: 15,

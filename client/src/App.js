@@ -5,7 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Login from './loginForm/Login';
 import Register from './loginForm/Register';
-import Home from './homePage/Home';
+import Home from './screen/Home';
 
 function HomeScreen() {
   return <Home />;

@@ -27,18 +27,40 @@ export default class App extends Component {
           component={Place}
           options={{
             title: 'Хөшөө дурсгал',
+            tabBarIcon: () => {
+              return <SvgXml xml={Pictures.homePic} width="90%" />;
+            },
           }}
         />
         <Tab.Screen
           name="Search"
           component={Search}
-          options={{title: 'Хайх'}}
+          options={{
+            title: 'Хайх',
+            tabBarIcon: () => {
+              return <SvgXml xml={Pictures.searchPic} width="90%" />;
+            },
+          }}
         />
-        <Tab.Screen name="News" component={News} options={{title: 'Мэдээ'}} />
+        <Tab.Screen
+          name="News"
+          component={News}
+          options={{
+            title: 'Мэдээ',
+            tabBarIcon: () => {
+              return <SvgXml xml={Pictures.newsPic} width="90%" />;
+            },
+          }}
+        />
         <Tab.Screen
           name="Profile"
           component={Profile}
-          options={{title: 'Профайл'}}
+          options={{
+            title: 'Профайл',
+            tabBarIcon: () => {
+              return <SvgXml xml={Pictures.proPic} width="90%" />;
+            },
+          }}
         />
       </Tab.Navigator>
     );
