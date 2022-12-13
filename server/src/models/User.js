@@ -11,7 +11,7 @@ class User {
   }
 
   save() {
-    return db.execute(query.insertUser, [
+    return db.execute("call insertUser(?,?,?,?)", [
       this.name,
       this.mail,
       this.username,
@@ -41,6 +41,10 @@ class User {
 
   static findById(id) {
     return db.execute(query.selectByIdUser, [id]);
+  }
+
+  static login(mail, password) {
+    return db.execute(`call login(?,?)`, [mail, password]);
   }
 }
 

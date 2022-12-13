@@ -11,12 +11,13 @@ import {
 } from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {SvgXml} from 'react-native-svg';
-import Pictures from '../constant/Pictures';
+import Pictures from '../../constants/Pictures';
 
-import Place from './Place';
-import Search from './Search';
-import News from './News';
-import Profile from './Profile';
+import Place from '../placeScreen/Place';
+import Search from '../searchScreen/Search';
+import News from '../newsScreen/News';
+import Profile from '../profileScreen/Profile';
+import PlaceDetail from '../placeScreen/PlaceDetails';
 
 export default class App extends Component {
   render() {
@@ -30,6 +31,7 @@ export default class App extends Component {
             tabBarIcon: () => {
               return <SvgXml xml={Pictures.homePic} width="90%" />;
             },
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -40,6 +42,7 @@ export default class App extends Component {
             tabBarIcon: () => {
               return <SvgXml xml={Pictures.searchPic} width="90%" />;
             },
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -50,6 +53,7 @@ export default class App extends Component {
             tabBarIcon: () => {
               return <SvgXml xml={Pictures.newsPic} width="90%" />;
             },
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -60,6 +64,7 @@ export default class App extends Component {
             tabBarIcon: () => {
               return <SvgXml xml={Pictures.proPic} width="90%" />;
             },
+            headerShown: false,
           }}
         />
       </Tab.Navigator>

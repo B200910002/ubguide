@@ -21,9 +21,27 @@ exports.getUserById = async (req, res, next) => {
   }
 };
 
+exports.login = async (req, res, next) => {
+  try {
+    let { mail, password } = req.body;
+    console.log(mail, password);
+    let user = await User.login(mail, password);
+    console.log(user[0][0][0]);
+    if (user[0][0][0] === undefined)
+      res.status(200).json({ message: "Login failed!" });
+    else {
+      user[0][0][0].access_token = "1234";
+      res.status(200).json(user[0][0][0]);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.createNewUser = async (req, res, next) => {
   try {
     let { name, mail, username, password } = req.body;
+    console.log(name, mail, username, password);
     let user = new User(name, mail, username, password);
     user = await user.save();
     res.status(201).json({ message: "User inserted" });
