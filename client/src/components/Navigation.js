@@ -7,7 +7,6 @@ import LoginScreen from '../screens/loginScreen/Login';
 import RegisterScreen from '../screens/registScreen/Register';
 import {AuthContext} from '../auth/Authentication';
 import SplashScreen from '../screens/SplashScreen';
-import PlaceDetail from '../screens/placeScreen/PlaceDetails';
 
 const Stack = createNativeStackNavigator();
 
