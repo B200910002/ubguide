@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import {Component, useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -12,6 +12,8 @@ import PlaceCard from '../../components/PlaceCard';
 import ServicePlace from '../../services/ServicePlace';
 import {PLACE_URL} from '../../config';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createNavigationContainerRef} from '@react-navigation/native';
+import PlaceDetail from './PlaceDetails';
 
 export default class Place extends Component {
   constructor(props) {
@@ -28,8 +30,7 @@ export default class Place extends Component {
   }
 
   async refresh() {
-    // console.log(process.env.REACT_APP_API);
-    await Axios(PLACE_URL + '/get').then(response => {
+    await Axios(`${PLACE_URL}/get`).then(response => {
       this.setState({
         places: response.data.entertainments,
         count: response.data.count,
@@ -37,17 +38,16 @@ export default class Place extends Component {
     });
   }
 
-  click = ({navigation}) => {};
-
   render() {
-    const Stack = createNativeStackNavigator();
     const {places} = this.state;
     return (
       <View>
         <Text>Нийт: {this.state.count}</Text>
         <ScrollView>
           {places.map(place => (
-            <TouchableOpacity onPress={() => this.click}>
+            <TouchableOpacity
+              key={place.uzwerid}
+              onPress={() => <PlaceDetail id={place.uzwerid} />}>
               <PlaceCard
                 key={place.uzwerid}
                 picture={place.prozurag}
@@ -60,5 +60,5 @@ export default class Place extends Component {
     );
   }
 }
-
+const Stack = createNativeStackNavigator();
 const styles = StyleSheet.create({});

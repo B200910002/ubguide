@@ -12,14 +12,14 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {SvgXml} from 'react-native-svg';
 import Pictures from '../../constants/Pictures';
-
 import Place from '../placeScreen/Place';
 import Search from '../searchScreen/Search';
 import News from '../newsScreen/News';
 import Profile from '../profileScreen/Profile';
 import PlaceDetail from '../placeScreen/PlaceDetails';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-export default class App extends Component {
+export default class Home extends Component {
   render() {
     return (
       <Tab.Navigator>
@@ -73,6 +73,7 @@ export default class App extends Component {
 }
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const styles = StyleSheet.create({
   search: {

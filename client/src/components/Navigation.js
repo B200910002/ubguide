@@ -7,6 +7,7 @@ import LoginScreen from '../screens/loginScreen/Login';
 import RegisterScreen from '../screens/registScreen/Register';
 import {AuthContext} from '../auth/Authentication';
 import SplashScreen from '../screens/SplashScreen';
+import PlaceDetail from '../screens/placeScreen/PlaceDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,14 +27,24 @@ const Navigation = () => {
             }}
           />
         ) : userInfo.access_token ? (
-          <Stack.Screen
-            name="Улаанбаатар хотын хөтөч"
-            component={HomeScreen}
-            options={{
-              headerStyle: {backgroundColor: '#DB4646'},
-              headerTintColor: '#ffffff',
-            }}
-          />
+          <Stack.Group>
+            {/* <Stack.Screen
+              name="Улаанбаатар хотын хөтөч"
+              component={HomeScreen}
+              options={{
+                headerStyle: {backgroundColor: '#DB4646'},
+                headerTintColor: '#ffffff',
+              }}
+            /> */}
+            <Stack.Screen
+              name="PlaceDetail"
+              component={PlaceDetail}
+              options={{
+                headerStyle: {backgroundColor: '#DB4646'},
+                headerTintColor: '#ffffff',
+              }}
+            />
+          </Stack.Group>
         ) : (
           <>
             <Stack.Screen
